@@ -97,6 +97,24 @@ window {
   }
 }
 
+.metric-battery {
+  progressbar.Charging trough {
+    progress {
+      background-color: $color_yellow;
+    }
+    /* background-color: red; */
+    animation-name: color-charging;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes color-charging {
+  0%   {background-color: $color_yellow;}
+  50%  {background-color: $color_surface0;}
+  100% {background-color: $color_yellow;}
+}
+
 tooltip,
 .tooltip {
   color: $color_white;

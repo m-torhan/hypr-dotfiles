@@ -65,6 +65,21 @@
         :orientation "h"
         :tooltip "${disk} - ${round(EWW_DISK[disk].used / 1024 / 1024 / 1024, 0)} / ${round(EWW_DISK[disk].total / 1024 / 1024 / 1024, 0)} GB"))))
 
+(defwidget metric-battery []
+  (box :class "metric metric-battery"
+       :orientation "v"
+       :space-evenly false
+       :valign "fill"
+       :vexpand false
+    (label :class "metric-icon"
+           :text "BAT")
+    (progress
+      :class "${EWW_BATTERY['BAT0'].status}"
+      :value "${EWW_BATTERY.total_avg}"
+      :width 28
+      :orientation "h"
+      :tooltip "${round(EWW_BATTERY.total_avg, 2)} % ${EWW_BATTERY['BAT0'].status}")))
+
 (defwidget metric-net []
   (eventbox :onclick "hyprctl dispatch exec [floating] nm-connection-editor"
     (box :class "metric metric-net"
