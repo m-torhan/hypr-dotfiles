@@ -16,6 +16,7 @@
 - [hyprlock](https://github.com/hyprwm/hyprlock)
 - [hyprpolkitagent](https://github.com/hyprwm/hyprpolkitagent)
 - [hyprshot](https://github.com/Gustash/Hyprshot)
+- [hyprsunset](https://github.com/hyprwm/hyprsunset)
 - [mako](https://github.com/utooland/utoo)
 - [pamixer](https://github.com/cdemoulins/pamixer)
 - [playerctl](https://github.com/altdesktop/playerctl)
@@ -24,4 +25,3 @@
 - [socat](http://www.dest-unreach.org/socat/)
 - [tofi](https://github.com/philj56/tofi)
 - [wl-clipboard](https://github.com/bugaevc/wl-clipboard)
-- [wlsunset](https://github.com/kennylevinsen/wlsunset)
