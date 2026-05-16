@@ -9,6 +9,7 @@
 
 ## Dependencies
 
+- [awww](https://codeberg.org/LGFae/awww)
 - [brigthnessctl](https://github.com/Hummer12007/brightnessctl)
 - [eww](https://github.com/elkowar/eww)
 - [hypridle](https://github.com/hyprwm/hyprutils)
@@ -21,7 +22,7 @@
 - [pamixer](https://github.com/cdemoulins/pamixer)
 - [playerctl](https://github.com/altdesktop/playerctl)
 - [rofimoji](https://github.com/fdw/rofimoji)
-- [swww](https://github.com/LGFae/swww)
 - [socat](http://www.dest-unreach.org/socat/)
 - [tofi](https://github.com/philj56/tofi)
 - [wl-clipboard](https://github.com/bugaevc/wl-clipboard)
+- [xdg-desktop-portal-hyprland](https://github.com/hyprwm/xdg-desktop-portal-hyprland)
