@@ -6,11 +6,12 @@
   :initial '{"progress": 0, "title": "", "album": "", "time": "", "status": ""}'
   'playerctl --follow metadata --format \'{"progress": {{ (1.0*position)/mpris:length }}, "title": "{{ artist }} - {{ title }}", "album": "{{ album }}", "time": "{{ duration(position) }} / {{ duration(mpris:length) }}", "status": "{{ status }}"}\'')
 
-(deflisten num_monitors :initial 1 "bash ~/.config/eww/scripts/get-num-monitors")
-(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
-(deflisten current_workspace :initial "[]" "bash ~/.config/eww/scripts/get-active-workspace")
+(defvar num_monitors 1)
+(defvar workspaces '[]')
+(defvar current_workspace '[]')
+(deflisten hyprland_sync :initial "syncing" "~/.config/eww/scripts/hyprland-sync.lua")
 
-(deflisten kb_layout :initial "" "bash ~/.config/eww/scripts/kb-layout")
+(deflisten kb_layout :initial "English (US)" "~/.config/eww/scripts/kb-layout.lua")
 
 (deflisten gpu_stats :initial "[]" "bash ~/.config/eww/scripts/get-gpu-stats")
 

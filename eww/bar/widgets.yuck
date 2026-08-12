@@ -65,6 +65,21 @@
         :orientation "h"
         :tooltip "${disk} - ${round(EWW_DISK[disk].used / 1024 / 1024 / 1024, 0)} / ${round(EWW_DISK[disk].total / 1024 / 1024 / 1024, 0)} GB"))))
 
+(defwidget metric-temps []
+  (box :class "metric metric-temps"
+       :orientation "v"
+       :space-evenly false
+       :valign "fill"
+       :vexpand false
+    (label :class "metric-icon"
+           :text "TEMP")
+    (for temp in {jq(EWW_TEMPS, "to_entries | map({name: .key, temperature: .value})")}
+      (progress
+        :value "${temp.temperature}"
+        :width 28
+        :orientation "h"
+        :tooltip "${temp.name}: ${round(temp.temperature, 1)} °C"))))
+
 (defwidget metric-battery []
   (box :class "metric metric-battery"
        :orientation "v"
@@ -81,7 +96,7 @@
       :tooltip "${round(EWW_BATTERY.total_avg, 2)} % ${EWW_BATTERY['BAT0'].status}")))
 
 (defwidget metric-net []
-  (eventbox :onclick "hyprctl dispatch exec [floating] nm-connection-editor"
+  (eventbox :onclick "hyprctl eval 'hl.dispatch(hl.dsp.exec_cmd(\"nm-connection-editor\", { float = true }))'"
     (box :class "metric metric-net"
          :orientation "v"
          :space-evenly false
@@ -99,7 +114,7 @@
     hour min sec))
 
 (defwidget volume []
-  (eventbox :onclick "hyprctl dispatch exec [floating] pavucontrol"
+  (eventbox :onclick "hyprctl eval 'hl.dispatch(hl.dsp.exec_cmd(\"pavucontrol\", { float = true }))'"
     (box :class "metric metric-volume"
          :orientation "v"
          :space-evenly false
@@ -144,8 +159,8 @@
                 :orientation "h"))))
 
 (defwidget kb-layout []
-  (eventbox :onclick "hyprctl switchxkblayout \"${KEYBOARD}\" next"
-    (label :text "${kb_layout == "\"Polish\"" ? "PL" : "EN"}")))
+  (eventbox :onclick "hyprctl eval 'require(\"hyprland-eww\").switch_keyboard(\"${KEYBOARD}\")'"
+    (label :text "${kb_layout == "Polish" ? "PL" : "EN"}")))
 
 (defwidget date []
   (tooltip :halign "center"
@@ -156,11 +171,11 @@
       day_word day month year)))
 
 (defwidget workspaces [screen]
-  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace[screen]}"
+  (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.lua {} ${screen}"
             :class "workspaces-widget"
     (box :orientation "v"
          :space-evenly true
       (for workspace in workspaces
-        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+        (eventbox :onclick "hyprctl eval 'hl.dispatch(hl.dsp.focus({ workspace = ${workspace.id} }))'"
           (box :class "workspace-entry ${workspace.id == current_workspace[screen] ? "current" : ""} ${workspace.windows > 0 ? (workspace.display == screen ? "occupied" : "occupied_diff_disp") : "empty"}"
             (label :text "${workspace.id == current_workspace[screen] ? icon_workspace_active : workspace.windows > 0 ? (workspace.display == screen ? icon_workspace_occupied : icon_workspace_occupied_diff_disp) : icon_workspace_empty}")))))))

@@ -1,5 +1,5 @@
 (defwidget bar [screen screens]
-  (centerbox :class "main-box"
+  (centerbox :class "main-box ${hyprland_sync}"
              :orientation "v"
     (box :class "segment-top"
          :valign "start"
@@ -36,6 +36,8 @@
     (box :visible "${screen == 0 || screens == 1}" (metric-cpu))
 
     (box :visible "${screen == 0 || screens == 1}" (metric-gpu))
+
+    (box :visible "${screen == 0 || screens == 1}" (metric-temps))
 
     (box :visible "${screen == 0 || screens == 1}" (metric-ram))
 

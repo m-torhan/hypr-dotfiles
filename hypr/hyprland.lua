@@ -1,0 +1,10 @@
+local defaults = require("hyprland-defaults")
+local actions = require("hyprland-actions")
+local eww = require("hyprland-eww")
+
+require("hyprland-env")
+require("hyprland-exec")
+require("hyprland-rules")
+require("hyprland-devices")(defaults)
+require("hyprland-binds")(defaults, actions, eww)
+require("hyprland-config")
